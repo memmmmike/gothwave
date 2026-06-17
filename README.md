@@ -36,7 +36,7 @@ npm run dev        # http://localhost:3000
 src/
   routes/__root.tsx   # app shell: html/head, fonts, og meta, error + 404 boundaries
   routes/index.tsx    # the explorer: hero, filter bar, grid, Dialog modal, empty state
-  data/lineup.ts      # typed ENTRIES + SCENES taxonomy + FLAG (scene-note) map
+  data/lineup.ts      # typed ENTRIES + SCENES taxonomy
   components/ui/       # shadcn Dialog primitive (Radix), themed to the prototype
   lib/utils.ts         # cn() class merge
   styles.css           # Tailwind v4 @theme tokens, grain + scanline texture, a11y
@@ -48,16 +48,8 @@ is git-ignored).
 ## Data
 
 `src/data/lineup.ts` is the single source of truth: 120 entries across 10 scenes
-(`CLD WCH PWR SYN ETH DRK EBM FLK DUN LBL`), with four entries carrying a
-**scene note** (`✻`). The hero counts (entries / scenes / scene notes) are
-computed from this file.
-
-### Scene notes (the `✻` marks)
-
-Some of these scenes have documented pockets of NSBM / far-right entryism. Four
-entries carry a short, factual note so listeners can screen on their own terms.
-The wording is deliberately measured — it surfaces documented allegations, not
-verdicts. Preserve it as written; see the `FLAG` map and the page footer.
+(`CLD WCH PWR SYN ETH DRK EBM FLK DUN LBL`). The hero counts (entries / scenes)
+are computed from this file.
 
 ### Streaming links
 

@@ -17,20 +17,21 @@ modeled on github.com/memmmmike/zapoutdoorz.
 - `src/router.tsx` (`getRouter`), `src/styles.css`
 - `src/routes/__root.tsx` (shell, fonts, meta, error + 404 boundaries)
 - `src/routes/index.tsx` (hero · sticky filter bar · grid · Dialog modal · empty state)
-- `src/data/lineup.ts` (typed ENTRIES + SCENES + FLAG, ported verbatim)
+- `src/data/lineup.ts` (typed ENTRIES + SCENES, ported verbatim)
 - `src/lib/utils.ts` (cn), `src/components/ui/dialog.tsx` (shadcn)
 - `README.md`
 - `routeTree.gen.ts` auto-generated — never hand-edit.
 
 ## Data facts (from prototype, do not drift)
 - 10 scenes: CLD WCH PWR SYN ETH DRK EBM FLK DUN LBL.
-- ENTRIES count computed at runtime; 4 scene-note flags: fernow×2 (Vatican Shadow, Prurient), go (Genocide Organ), dtl (Drowning the Light).
-- FLAG map (fernow/dtl/go) text preserved exactly. Footer safety note preserved exactly.
+- ENTRIES count computed at runtime.
 - `q()` encoder strips parens; links = Bandcamp/Discogs/YouTube search URLs.
+- (Update) The original prototype's entry-flag / footer-caveat system was removed
+  at the user's request — app, data, prototype reference, and docs all scrubbed.
 
 ## Tasks
 1. [x] Scaffold + install, `npm run dev` works. (renders SSR on :3001, 200)
-2. [x] Port data → `src/data/lineup.ts` (typed). 120 entries / 4 flags / 10 scenes — exact match to prototype.
+2. [x] Port data → `src/data/lineup.ts` (typed). 120 entries / 10 scenes — exact match to prototype.
 3. [x] Build `index.tsx` UI (hero/filter/grid/modal/empty).
 4. [x] Port design tokens → `styles.css` `@theme` (palette, fonts, grain, scanline, a11y, reduced-motion).
 5. [x] `__root.tsx` shell (fonts, meta, boundaries).
@@ -43,8 +44,8 @@ modeled on github.com/memmmmike/zapoutdoorz.
        Verified bandcamp URL present in shipped client bundle.
 
 ## Handoff (final)
-- GOTHWAVE is a complete, deployable TanStack Start app. Prototype ported faithfully: 120 entries / 10 scenes
-  / 4 scene-notes, full design system (tokens, grain, scanline, RGB-split wordmark), filter+search+grid+modal,
+- GOTHWAVE is a complete, deployable TanStack Start app. Prototype ported faithfully: 120 entries / 10 scenes,
+  full design system (tokens, grain, scanline, RGB-split wordmark), filter+search+grid+modal,
   a11y (Radix Dialog Esc/focus-trap, focus-visible, reduced-motion, mobile down to ~320px).
 - Deploy: import to Vercel (or `vercel deploy`). vercel.json pins build/install; build forces NITRO_PRESET=vercel
   → .vercel/output (Build Output API v3). No env vars needed.
@@ -65,7 +66,6 @@ modeled on github.com/memmmmike/zapoutdoorz.
 
 ## Constraints
 - Never invent artists/URLs. Unsure → keep search link, note uncertainty in comment.
-- Preserve scene-note content exactly (factual NSBM/far-right caveat). Measured, not preachy.
 - Accessible: visible focus, Esc-to-close, mobile down to ~320px.
 
 ## Handoff log

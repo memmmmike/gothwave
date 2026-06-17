@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/dialog";
 import {
   ENTRIES,
-  FLAG,
   SCENES,
   SCENE_MAP,
   links,
@@ -35,11 +34,6 @@ function Explorer() {
     for (const e of ENTRIES) c[e.s] = (c[e.s] ?? 0) + 1;
     return c;
   }, []);
-
-  const flaggedCount = useMemo(
-    () => ENTRIES.filter((e) => e.f).length,
-    [],
-  );
 
   const results = useMemo(() => {
     const t = query.trim().toLowerCase();
@@ -84,9 +78,6 @@ function Explorer() {
           </span>
           <span>
             <b className="font-bold text-ice">{SCENES.length}</b> scenes
-          </span>
-          <span>
-            <b className="font-bold text-ice">{flaggedCount}</b> scene notes
           </span>
         </div>
       </header>
@@ -157,17 +148,8 @@ function Explorer() {
                   aria-label={`Open ${e.n}`}
                   className="group flex min-h-[112px] flex-col bg-ash p-[14px] text-left transition-[background-color,transform] duration-150 hover:-translate-y-0.5 hover:bg-ash2 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ice motion-reduce:hover:translate-y-0 sm:min-h-[128px] sm:p-[18px] sm:pb-5"
                 >
-                  <div className="mb-auto flex items-center justify-between text-[10px] tracking-[0.2em] text-smoke">
-                    <span>{sc.code}</span>
-                    {e.f && (
-                      <span
-                        className="text-[12px] leading-none text-oxblood"
-                        title="Scene note"
-                        aria-label="Has a scene note"
-                      >
-                        ✻
-                      </span>
-                    )}
+                  <div className="mb-auto text-[10px] tracking-[0.2em] text-smoke">
+                    {sc.code}
                   </div>
                   <div className="mb-2 mt-[18px] font-display text-[20px] font-bold uppercase leading-[1.02] tracking-[0.005em] transition-[text-shadow] duration-150 group-hover:[text-shadow:0.03em_0_var(--color-oxblood),-0.025em_0_var(--color-ice)] sm:text-[25px]">
                     {e.n}
@@ -182,17 +164,8 @@ function Explorer() {
         )}
       </main>
 
-      {/* ── Footer: the ✻ note ── */}
+      {/* ── Footer ── */}
       <footer className="mx-auto max-w-[1180px] border-t border-hairline px-[22px] pb-[56px] pt-[30px] text-[11px] leading-[1.7] text-smoke">
-        <div className="text-[10px] uppercase tracking-[0.16em] text-bone">
-          On the ✻ marks
-        </div>
-        Some scenes here have documented pockets of NSBM / far-right entryism. A
-        handful of entries carry a note so you can screen on your own terms — the
-        music&apos;s worth digging; the scene rewards knowing whose hands you put
-        money in.
-        <br />
-        <br />
         Listen links open searches on Bandcamp, Discogs, and YouTube — no profile
         is pre-verified, so trust your ears. Built from the GOTHWAVE crate-digging
         list.
@@ -220,14 +193,6 @@ function Explorer() {
             <DialogDescription className="mb-[22px] text-[14px] leading-[1.6] text-bone">
               {open.d}.
             </DialogDescription>
-            {open.f && (
-              <div className="mb-[22px] border border-oxblood-dim bg-[rgba(168,50,63,0.08)] px-[14px] py-3 text-[12px] leading-[1.55] text-bone">
-                <b className="mb-[6px] block text-[10px] uppercase tracking-[0.14em] text-oxblood">
-                  ✻ Scene note
-                </b>
-                {FLAG[open.f]}
-              </div>
-            )}
             <p className="mb-[11px] text-[10px] uppercase tracking-[0.22em] text-smoke">
               {open.s === "label"
                 ? "Explore the catalogue"

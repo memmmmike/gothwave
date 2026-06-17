@@ -33,7 +33,7 @@ export const Route = createRootRoute({
       {
         rel: "icon",
         type: "image/svg+xml",
-        // ✻ scene-note motif: oxblood on ink.
+        // Asterisk mark: oxblood on ink.
         href:
           "data:image/svg+xml," +
           encodeURIComponent(

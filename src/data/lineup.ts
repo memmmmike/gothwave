@@ -1,8 +1,7 @@
 /* ──────────────────────────────────────────────────────────────────────────
    GOTHWAVE — typed dataset, ported verbatim from gothwave-archive.jsx.
-   Source of truth for: the SCENES taxonomy, the FLAG (scene-note) text, and the
-   ENTRIES list. Do not rename ids/codes or drop entries — the UI counts derive
-   from this file.
+   Source of truth for: the SCENES taxonomy and the ENTRIES list. Do not rename
+   ids/codes or drop entries — the UI counts derive from this file.
 
    STREAMING LINKS
    ───────────────
@@ -39,8 +38,6 @@ export type SceneId =
   | "dungeon"
   | "label";
 
-export type FlagKey = "fernow" | "dtl" | "go";
-
 export interface Scene {
   id: SceneId;
   code: string;
@@ -54,8 +51,6 @@ export interface Entry {
   s: SceneId;
   /** One-line description. */
   d: string;
-  /** Optional scene-note flag key. */
-  f?: FlagKey;
   /** Optional web-confirmed direct Bandcamp / official profile URL. */
   bandcamp?: string;
 }
@@ -80,17 +75,6 @@ export const SCENES: Scene[] = [
 export const SCENE_MAP: Record<SceneId, Scene> = Object.fromEntries(
   SCENES.map((s) => [s.id, s]),
 ) as Record<SceneId, Scene>;
-
-/**
- * Scene notes. Deliberate, factual safety caveats about NSBM / far-right
- * entryism. Preserve the wording exactly — measured, not preachy.
- */
-export const FLAG: Record<FlagKey, string> = {
-  fernow:
-    "Documented allegations link Dominick Fernow and his label Hospital Productions to far-right / NSBM figures. Surfaced so you can decide on your own terms.",
-  dtl: "Has drawn documented scrutiny over NSBM / far-right associations. Surfaced so you can decide on your own terms.",
-  go: "Trades in deliberately provocative militaristic / extremist imagery — long debated in the scene. Screen if that matters to you.",
-};
 
 export const ENTRIES: Entry[] = [
   // ── Coldwave / Minimal Synth ──
@@ -339,14 +323,12 @@ export const ENTRIES: Entry[] = [
     n: "Vatican Shadow",
     s: "industrial",
     d: "Militaristic techno-industrial (Dominick Fernow)",
-    f: "fernow",
     bandcamp: "https://vaticanshadow.bandcamp.com/",
   },
   {
     n: "Prurient",
     s: "industrial",
     d: "Deep-end PE — same artist as Vatican Shadow",
-    f: "fernow",
     bandcamp: "https://prurient.bandcamp.com/",
   },
   {
@@ -367,7 +349,6 @@ export const ENTRIES: Entry[] = [
     n: "Genocide Organ",
     s: "industrial",
     d: "German PE cornerstone (provocative imagery)",
-    f: "go",
   },
   {
     n: "Sutcliffe Jügend",
@@ -585,7 +566,6 @@ export const ENTRIES: Entry[] = [
     n: "Drowning the Light",
     s: "dungeon",
     d: "Atmospheric / raw black metal",
-    f: "dtl",
   },
   {
     n: "Old Tower",

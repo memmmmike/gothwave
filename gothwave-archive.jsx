@@ -23,15 +23,6 @@ const SCENES = [
 
 const SCENE_MAP = Object.fromEntries(SCENES.map((s) => [s.id, s]));
 
-const FLAG = {
-  fernow:
-    "Documented allegations link Dominick Fernow and his label Hospital Productions to far-right / NSBM figures. Surfaced so you can decide on your own terms.",
-  dtl:
-    "Has drawn documented scrutiny over NSBM / far-right associations. Surfaced so you can decide on your own terms.",
-  go:
-    "Trades in deliberately provocative militaristic / extremist imagery — long debated in the scene. Screen if that matters to you.",
-};
-
 const ENTRIES = [
   // ── Coldwave / Minimal Synth ──
   { n: "Ortrotasce", s: "coldwave", d: "Raw American minimal synth / coldwave" },
@@ -87,13 +78,13 @@ const ENTRIES = [
   // ── Death Industrial / Power Electronics ──
   { n: "Pharmakon", s: "industrial", d: "Visceral, confrontational power electronics" },
   { n: "Lingua Ignota", s: "industrial", d: "Operatic, brutal, devastating" },
-  { n: "Vatican Shadow", s: "industrial", d: "Militaristic techno-industrial (Dominick Fernow)", f: "fernow" },
-  { n: "Prurient", s: "industrial", d: "Deep-end PE — same artist as Vatican Shadow", f: "fernow" },
+  { n: "Vatican Shadow", s: "industrial", d: "Militaristic techno-industrial (Dominick Fernow)" },
+  { n: "Prurient", s: "industrial", d: "Deep-end PE — same artist as Vatican Shadow" },
   { n: "Croatian Amor", s: "industrial", d: "Ambient-industrial; Loke Rahbek (Posh Isolation)" },
   { n: "Cute Heels", s: "industrial", d: "Harder, Boy Harsher-adjacent" },
   { n: "Years of Denial", s: "industrial", d: "Harder darkwave / industrial" },
   { n: "Puce Mary", s: "industrial", d: "Danish contemporary power electronics; precise" },
-  { n: "Genocide Organ", s: "industrial", d: "German PE cornerstone (provocative imagery)", f: "go" },
+  { n: "Genocide Organ", s: "industrial", d: "German PE cornerstone (provocative imagery)" },
   { n: "Sutcliffe Jügend", s: "industrial", d: "Foundational UK power electronics" },
   { n: "Ramleh", s: "industrial", d: "Foundational UK PE / noise" },
   { n: "Author & Punisher", s: "industrial", d: "One-man industrial-doom machines" },
@@ -147,7 +138,7 @@ const ENTRIES = [
 
   // ── Dungeon Synth ──
   { n: "Mortiis", s: "dungeon", d: "Early dungeon-synth era" },
-  { n: "Drowning the Light", s: "dungeon", d: "Atmospheric / raw black metal", f: "dtl" },
+  { n: "Drowning the Light", s: "dungeon", d: "Atmospheric / raw black metal" },
   { n: "Old Tower", s: "dungeon", d: "Dutch; regal and cavernous" },
   { n: "Erang", s: "dungeon", d: "French; prolific, melodic, lore-heavy" },
   { n: "Fief", s: "dungeon", d: "Warm, comfy dungeon synth" },
@@ -392,7 +383,6 @@ export default function GothwaveArchive() {
         <div className="gw-meta">
           <span><b>{ENTRIES.length}</b> entries</span>
           <span><b>{SCENES.length}</b> scenes</span>
-          <span><b>{ENTRIES.filter((e) => e.f).length}</b> scene notes</span>
         </div>
       </header>
 
@@ -442,7 +432,6 @@ export default function GothwaveArchive() {
                 <button key={e.n} className="gw-card" onClick={() => setOpen(e)} aria-label={`Open ${e.n}`}>
                   <div className="gw-code">
                     <span>{sc.code}</span>
-                    {e.f && <span className="gw-flagdot" title="Scene note">✻</span>}
                   </div>
                   <div className="gw-name">{e.n}</div>
                   <div className="gw-desc">{e.d}</div>
@@ -454,11 +443,6 @@ export default function GothwaveArchive() {
       </main>
 
       <footer className="gw-wrap gw-foot">
-        <div className="gw-lbl lbl">On the ✻ marks</div>
-        Some scenes here have documented pockets of NSBM / far-right entryism. A
-        handful of entries carry a note so you can screen on your own terms — the
-        music's worth digging; the scene rewards knowing whose hands you put money in.
-        <br /><br />
         Listen links open searches on Bandcamp, Discogs, and YouTube — no profile is
         pre-verified, so trust your ears. Built from the GOTHWAVE crate-digging list.
       </footer>
@@ -476,12 +460,6 @@ export default function GothwaveArchive() {
             <div className="gw-mcode">{SCENE_MAP[open.s].code} — {SCENE_MAP[open.s].label}</div>
             <div className="gw-mname">{open.n}</div>
             <p className="gw-mdesc">{open.d}.</p>
-            {open.f && (
-              <div className="gw-flag">
-                <b>✻ Scene note</b>
-                {FLAG[open.f]}
-              </div>
-            )}
             <p className="gw-act">{open.s === "label" ? "Explore the catalogue" : "Go find the music"}</p>
             <div className="gw-links">
               {links(open.n).map((l) => (
